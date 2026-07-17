@@ -254,29 +254,47 @@ footer .framer-ohx6u0-container {
   border: 0 !important;
   border-radius: 16px !important;
 }
+/* Real YouTube play button.
+   NOTE the width rule below MUST be !important: `.framer-m18xux > div > * > *`
+   sets width:100% !important, which beats the element's inline width and was
+   stretching the old circle into a 361x50 ellipse. */
 .framer-m18xux .pf-play {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: 58px !important;
-  height: 58px !important;
-  background: rgba(0, 0, 0, 0.55) !important;
-  border-radius: 50% !important;
+  width: 68px !important;
+  height: 48px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  border-radius: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   pointer-events: none !important;
-  transition: background 0.25s ease, transform 0.25s ease !important;
+  z-index: 3 !important;
+  transition: transform 0.25s ease !important;
 }
-.framer-m18xux .pf-play svg {
-  width: 24px !important;
-  height: 24px !important;
-  margin-left: 3px !important;
+.framer-m18xux .pf-play svg,
+.framer-m18xux .pf-play .pf-yt {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  display: block !important;
+}
+.framer-m18xux .pf-play .pf-yt-bg {
+  fill: #212121 !important;
+  fill-opacity: 0.8 !important;
+  transition: fill 0.2s ease, fill-opacity 0.2s ease !important;
 }
 .framer-m18xux > div > .pf-card:hover .pf-play {
-  background: #ff0000 !important;
-  transform: translate(-50%, -50%) scale(1.08) !important;
+  transform: translate(-50%, -50%) scale(1.06) !important;
+}
+.framer-m18xux > div > .pf-card:hover .pf-play .pf-yt-bg {
+  fill: #ff0000 !important;
+  fill-opacity: 1 !important;
 }
 .framer-m18xux > div > .pf-card:hover {
   transform: translateY(-6px) !important;
@@ -590,4 +608,80 @@ a[href*="calendly.com"]:hover {
 }
 .mobile-menu-cta:hover {
   opacity: 0.9;
+}
+
+/* "Why Me" row: nudge the Revisions / Fast Turnaround column right.
+   The row is justify-content:center with ~82px of slack each side, so any
+   margin/gap change re-centres and drags the retention card left too.
+   A transform moves only this column and leaves the retention card put.
+   Desktop only — below this the row stacks and there's no slack. */
+@media (min-width: 1000px) {
+  .framer-nw7sch .framer-1j5r8aa {
+    transform: translateX(72px);
+  }
+}
+
+/* ==========================================================================
+   SERVICE CARDS ON MOBILE
+   The desktop rules above pin the image column to max-width:60% and
+   min-height:300px. Once Framer stacks the card (<810px) those stick, so the
+   column stays a narrow 179x300 well while the artwork inside is wide 16:9 —
+   object-fit:contain then renders it ~179x94, marooned in dead space. Let the
+   column go full width and the image keep its own ratio.
+   ========================================================================== */
+@media (max-width: 809.98px) {
+  .framer-5IQds .framer-12f1gwt,
+  .framer-5IQds .framer-a7m40w,
+  .framer-5IQds .framer-12vqwha,
+  .framer-5IQds .framer-1d6x2tg {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  /* The Framer wrapper between column and <img> is also fixed-size */
+  .framer-5IQds .framer-12f1gwt > *,
+  .framer-5IQds .framer-a7m40w > *,
+  .framer-5IQds .framer-12vqwha > *,
+  .framer-5IQds .framer-1d6x2tg > * {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  .framer-5IQds .framer-12f1gwt img,
+  .framer-5IQds .framer-a7m40w img,
+  .framer-5IQds .framer-12vqwha img,
+  .framer-5IQds .framer-1d6x2tg img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border-radius: 12px !important;
+  }
+  /* Thumbnail Design + Color Grading are a slideshow / before-after slider.
+     Their inner boxes are height:100% and the <li> is display:contents, so
+     height:auto collapses the whole chain to 0 and the artwork spills out of
+     the card. Give the column a real box and let the chain fill it. */
+  .framer-5IQds .framer-12vqwha,
+  .framer-5IQds .framer-1d6x2tg {
+    aspect-ratio: 16 / 11 !important;
+    height: auto !important;
+  }
+  .framer-5IQds .framer-12vqwha > *,
+  .framer-5IQds .framer-1d6x2tg > *,
+  .framer-5IQds .framer-12vqwha .framer-slideshow,
+  .framer-5IQds .framer-1d6x2tg .framer-slideshow,
+  .framer-5IQds .framer-12vqwha .framer-slideshow ul,
+  .framer-5IQds .framer-1d6x2tg .framer-slideshow ul,
+  .framer-5IQds .framer-12vqwha .framer-slideshow li > *,
+  .framer-5IQds .framer-1d6x2tg .framer-slideshow li > * {
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+  .framer-5IQds .framer-12vqwha img,
+  .framer-5IQds .framer-1d6x2tg img {
+    height: 100% !important;
+  }
 }
