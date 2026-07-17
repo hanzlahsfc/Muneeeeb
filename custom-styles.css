@@ -544,6 +544,11 @@ footer.framer-axgd5s::after {
     order: 3 !important;
   }
 
+  /* About Me: image above text on mobile */
+  .framer-1h0v7jl {
+    order: -1 !important;
+  }
+
   /* Footer: center copyright, hide Built By, make Hanzlah glow red on hover */
   .framer-1wathli {
     justify-content: center !important;
