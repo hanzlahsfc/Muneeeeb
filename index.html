@@ -313,7 +313,7 @@ Placeholder&quot;, sans-serif;--framer-text-color:var(--token-21558d87-70fd-407e
       for (var i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', function() {
           var src = this.getAttribute('data-src');
-          this.innerHTML = '<div style="' + innerFrame + '"><iframe src="' + src + '" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;aspect-ratio:9/16;border:none;display:block"></iframe></div>';
+          this.innerHTML = '<iframe src="' + src + '" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;display:block"></iframe>';
         });
       }
     }
