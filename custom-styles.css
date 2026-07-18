@@ -4,6 +4,13 @@ html {
     radial-gradient(120% 140% at 50% 0%, rgba(255, 0, 0, 0.12) 0%, rgba(10, 10, 10, 0) 55%),
     linear-gradient(180deg, #0d0d0d 0%, #060606 100%) !important;
   background-attachment: fixed !important;
+  background-color: #060606 !important;
+  overscroll-behavior: none !important;
+}
+body {
+  background-color: #060606 !important;
+  overscroll-behavior: none !important;
+  -webkit-overflow-scrolling: touch;
 }
 body, .framer-gvib3.framer-mq0uyz {
   background: transparent !important;
@@ -500,6 +507,16 @@ footer.framer-axgd5s::after {
   background: radial-gradient(closest-side, rgba(255, 0, 0, 0.18), rgba(255, 0, 0, 0) 70%) !important;
   pointer-events: none !important;
   z-index: 0;
+}
+
+/* Mobile: reduce GPU layers that cause scroll jank */
+@media (max-width: 809.98px) {
+  .framer-gvib3 *:not(nav):not(.framer-ujUI6) {
+    will-change: auto !important;
+  }
+  .framer-gvib3 section {
+    overflow: visible !important;
+  }
 }
 
 /* Mobile: one full-width video card at a time (like the reference) */
