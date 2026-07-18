@@ -64,12 +64,14 @@ nav.framer-ujUI6 {
   /* Auto-responsive: ~3 cols on desktop, 2 on tablet, 1 on phone — without
      relying on fixed viewport breakpoints, and never overflowing narrow screens */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)) !important;
+  grid-auto-rows: auto !important;
   column-count: auto !important;
   gap: 24px !important;
   align-items: start !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
+  height: auto !important;
 }
 
 /* Collapse the extra Framer wrapper so cards become direct grid items */

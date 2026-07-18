@@ -241,8 +241,8 @@ Placeholder&quot;, sans-serif;--framer-text-color:var(--token-21558d87-70fd-407e
   }
 
   function initPortfolio() {
-    var wrap = document.querySelector('.framer-m18xux > div');
-    if (!wrap) return;
+    var wraps = document.querySelectorAll('.framer-m18xux > div');
+    if (!wraps.length) return;
 
     var workData = {
       all: [
@@ -307,14 +307,16 @@ Placeholder&quot;, sans-serif;--framer-text-color:var(--token-21558d87-70fd-407e
             '<span style="color:#19ff75;font-size:14px;font-weight:500">View on Frame.io</span></div></a>';
         }
       }
-      wrap.style.cssText = wrapStyle;
-      wrap.innerHTML = html;
-      var cards = wrap.querySelectorAll('.pf-card[data-src]');
-      for (var i = 0; i < cards.length; i++) {
-        cards[i].addEventListener('click', function() {
-          var src = this.getAttribute('data-src');
-          this.innerHTML = '<iframe src="' + src + '" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;display:block"></iframe>';
-        });
+      for (var w = 0; w < wraps.length; w++) {
+        wraps[w].style.cssText = wrapStyle;
+        wraps[w].innerHTML = html;
+        var cards = wraps[w].querySelectorAll('.pf-card[data-src]');
+        for (var i = 0; i < cards.length; i++) {
+          cards[i].addEventListener('click', function() {
+            var src = this.getAttribute('data-src');
+            this.innerHTML = '<iframe src="' + src + '" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;display:block"></iframe>';
+          });
+        }
       }
     }
 
