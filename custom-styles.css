@@ -434,6 +434,32 @@ footer .framer-ohx6u0-container {
   transition: opacity 0.2s ease;
 }
 
+/* Stats row: ensure items don't overlap */
+.framer-p47fhg {
+  width: 100% !important;
+  gap: 10px !important;
+  justify-content: space-evenly !important;
+  flex-wrap: nowrap !important;
+}
+.framer-p47fhg > div {
+  flex: 0 1 auto !important;
+  text-align: center !important;
+  overflow: visible !important;
+}
+
+/* Testimonial name: prevent long names from overflowing card */
+.framer-27ay9q {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.framer-27ay9q p {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-size: clamp(12px, 3.5vw, 18px) !important;
+}
+
 /* Hide pricing section entirely */
 section#pricing {
   display: none !important;
@@ -561,6 +587,10 @@ footer.framer-axgd5s::after {
   }
   .framer-5IQds .framer-kzphr9 {
     order: 3 !important;
+  }
+  .framer-5IQds .framer-kzphr9 [data-framer-appear-id] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   /* About Me: image above text on mobile */
